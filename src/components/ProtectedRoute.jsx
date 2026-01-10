@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
   const [allowed, setAllowed] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = document.cookie.includes("token");
@@ -9,7 +11,7 @@ export default function ProtectedRoute({ children }) {
     if (token) {
       setAllowed(true);
     } else {
-      window.location.href = "/";
+      navigate("/");
     }
   }, []);
 

@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 export default function Navbar() {
   const [loggingOut, setLoggingOut] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     setLoggingOut(true);
@@ -16,7 +19,7 @@ export default function Navbar() {
       if (response.status === 200) {
         localStorage.removeItem("user");
         alert("Logout successful");
-        window.location.href = "/";
+        navigate("/");
       } else {
         alert("Logout failed");
       }

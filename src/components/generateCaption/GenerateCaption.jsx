@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./generateCaption.css";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 export default function CaptionGenerator() {
   const [caption, setCaption] = useState("");
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const file = e.target.image.files[0];
@@ -24,7 +26,7 @@ export default function CaptionGenerator() {
         credentials: "include",
       });
       if (response.status === 401) {
-        window.location.href = "/";
+        navigate("/");
         return;
       }
       const data = await response.json();

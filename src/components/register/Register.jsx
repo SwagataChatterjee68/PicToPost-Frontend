@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./register.css";
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -16,7 +19,7 @@ export default function Register() {
       if (response.status === 200) {
         localStorage.setItem("user", data.username);
         alert("Account created successfully");
-        window.location.href = "/";
+        navigate("/generate");
       } else {
         alert(data.message);
       }
@@ -64,8 +67,8 @@ export default function Register() {
           </div>
           <button className="submit-btn">Register</button>
         </form>
-        <p className="link-text">
-          Already have an account? <a href="/">Go to Login</a>
+        <p className="link-text"> 
+          Already have an account? <Link to="/">Login</Link>
         </p>
       </div>
     </div>

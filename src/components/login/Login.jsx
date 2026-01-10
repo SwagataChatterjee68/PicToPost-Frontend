@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -15,7 +18,7 @@ export default function Login() {
       const data = await response.json();
       if (response.status === 200) {
         localStorage.setItem("user", data.username);
-        window.location.href = "/generate";
+        navigate("/generate");
       } else if (response.status === 401) {
         alert("Invalid Username or Password");
       }
@@ -54,7 +57,8 @@ export default function Login() {
           <button className="primary-btn">Login</button>
         </form>
         <div className="footer">
-          <p>No account yet?</p> <a href="/signup">Create one here</a>
+          <p>No account yet?</p> <Link to="/signup">Create one here</Link>
+
         </div>
       </div>
     </div>
