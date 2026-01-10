@@ -19,7 +19,7 @@ export default function Register() {
       if (response.status === 200) {
         localStorage.setItem("user", data.username);
         alert("Account created successfully");
-        navigate("/generate");
+        navigate("/");
       } else {
         alert(data.message);
       }
