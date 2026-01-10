@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./generateCaption.css";
+const API_URL = import.meta.env.VITE_API_URL;
 import { useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 export default function CaptionGenerator() {
@@ -20,7 +21,7 @@ export default function CaptionGenerator() {
     setLoading(true);
     setCaption("");
     try {
-      const response = await fetch(`${process.env.API_URL}/auth/generate`, {
+      const response = await fetch(`${API_URL}/auth/generate`, {
         method: "POST",
         body: formData,
         credentials: "include",
