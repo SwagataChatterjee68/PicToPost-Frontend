@@ -11,16 +11,15 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/auth/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
-        }
-      );
-      if (response.ok) {
-        alert("Login successful");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+        credentials: "include",
+      });
+      const data = await response.json();
+      if (response.status === 200) {
+        localStorage.setItem("user", data.username);
         navigate("/generate");
       } else if (response.status === 401) {
         alert("Invalid Username or Password");
