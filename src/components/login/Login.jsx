@@ -20,6 +20,7 @@ export default function Login() {
         }
       );
       if (response.ok) {
+        alert("Login successful");
         navigate("/generate");
       } else if (response.status === 401) {
         alert("Invalid Username or Password");
