@@ -20,7 +20,7 @@ export default function CaptionGenerator() {
     setLoading(true);
     setCaption("");
     try {
-      const response = await fetch(`https://pictopost-backend.onrender.com/auth/generate`, {
+      const response = await fetch(`${process.env.API_URL}/auth/generate`, {
         method: "POST",
         body: formData,
         credentials: "include",

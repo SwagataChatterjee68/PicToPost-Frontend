@@ -11,7 +11,7 @@ export default function Navbar() {
     setLoggingOut(true);
 
     try {
-      const response = await fetch(`https://pictopost-backend.onrender.com/auth/logout`, {
+      const response = await fetch(`${process.env.API_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
