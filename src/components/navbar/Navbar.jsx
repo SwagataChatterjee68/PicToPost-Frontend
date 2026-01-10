@@ -1,5 +1,4 @@
 import { useState } from "react";
-const API_URL = import.meta.env.VITE_API_URL;
 import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 
@@ -12,7 +11,7 @@ export default function Navbar() {
     setLoggingOut(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/logout`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

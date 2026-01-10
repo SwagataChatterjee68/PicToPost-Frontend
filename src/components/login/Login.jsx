@@ -1,5 +1,4 @@
 import { useState } from "react";
-const API_URL = import.meta.env.VITE_API_URL;
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
@@ -7,10 +6,12 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  console.log("API:", import.meta.env.VITE_API_URL);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -27,6 +28,7 @@ export default function Login() {
       alert("Server connection failed");
     }
   };
+
   return (
     <div className="page-wrapper">
       <div className="card">
@@ -59,7 +61,6 @@ export default function Login() {
         </form>
         <div className="footer">
           <p>No account yet?</p> <Link to="/signup">Create one here</Link>
-
         </div>
       </div>
     </div>

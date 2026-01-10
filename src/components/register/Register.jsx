@@ -1,5 +1,4 @@
 import { useState } from "react";
-const API_URL = import.meta.env.API_URL;
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./register.css";
@@ -11,7 +10,7 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}auth/register`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
