@@ -10,7 +10,10 @@ export default function ProtectedRoute({ children }) {
 
     if (token) {
       setAllowed(true);
+      alert("You are logged in");
+      navigate("/generate");
     } else {
+      alert("You are not logged in");
       navigate("/");
     }
   }, []);
