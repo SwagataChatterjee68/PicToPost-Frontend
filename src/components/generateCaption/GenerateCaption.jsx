@@ -14,6 +14,12 @@ export default function CaptionGenerator() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
     const file = e.target.image.files[0];
     if (!file) {
       alert("Select an image first");
@@ -28,14 +34,16 @@ export default function CaptionGenerator() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/post/`, {
+      const response = await fetch(`${API_URL}/post`, {
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`, // ✅ REQUIRED
+        },
         body: formData,
-        credentials: "include", // ✅ REQUIRED for cookie auth
       });
 
-      // Not authenticated
       if (response.status === 401) {
+        localStorage.removeItem("token");
         navigate("/");
         return;
       }
