@@ -46,7 +46,7 @@ export default function Login() {
             <input
               type="text" // ✅ FIXED
               value={username}
-              plceholder="Enter Username"
+              placeholder="Enter Username"
               onChange={(e) => setUsername(e.target.value)}
               required
             />
