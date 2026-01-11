@@ -46,6 +46,7 @@ export default function Login() {
             <input
               type="text" // ✅ FIXED
               value={username}
+              plceholder="Enter Username"
               onChange={(e) => setUsername(e.target.value)}
               required
             />
@@ -55,6 +56,7 @@ export default function Login() {
             <label>Password</label>
             <input
               type="password"
+              placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
