@@ -1,23 +1,11 @@
-import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
-  const [loading, setLoading] = useState(true);
-  const [allowed, setAllowed] = useState(false);
+  const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/auth/profile`, {
-      credentials: "include",
-    })
-      .then((res) => {
-        if (res.ok) {
-          setAllowed(true);
-        }
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  if (!token) {
+    return <Navigate to="/" replace />;
+  }
 
-  if (loading) return null;
-
-  return allowed ? children : <Navigate to="/" replace />;
+  return children;
 }
