@@ -17,14 +17,17 @@ export default function Login() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password }),
-          credentials: "include", // ✅ REQUIRED
         }
       );
 
+      const data = await response.json();
+
       if (response.ok) {
+        // ✅ STORE TOKEN HERE
+        localStorage.setItem("token", data.token);
+
         navigate("/generate");
       } else {
-        const data = await response.json();
         alert(data.message || "Login failed");
       }
     } catch {
