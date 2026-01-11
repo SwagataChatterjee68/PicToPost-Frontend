@@ -6,7 +6,7 @@ export default function ProtectedRoute({ children }) {
   const [allowed, setAllowed] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/auth/me`, {
+    fetch(`${import.meta.env.VITE_API_URL}/post/`, {
       credentials: "include",
     })
       .then((res) => {
